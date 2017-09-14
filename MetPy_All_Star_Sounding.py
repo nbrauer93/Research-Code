@@ -121,7 +121,10 @@ skew = SkewT(fig)
 # log scaling in Y, as dictated by the typical meteorological plot
 skew.plot(p, T, 'r', linewidth=2)
 skew.plot(p, Td, 'g', linewidth=2)
-skew.plot_barbs(p, u, v)
+#skew.plot_barbs(p, u, v)
+
+#Increase the number in these arrays to increase the declutter rate
+skew.plot_barbs(p[0::4], u[0::4], v[0::4])
 
 # Show the plot
 #plt.show()
@@ -142,7 +145,9 @@ skew = SkewT(fig, rotation=30)
 # log scaling in Y, as dictated by the typical meteorological plot
 skew.plot(p, T, 'r')
 skew.plot(p, Td, 'g')
-skew.plot_barbs(p, u, v,)
+#skew.plot_barbs(p, u, v,)
+#Increase the number in these arrays to increase the declutter rate
+skew.plot_barbs(p[0::4], u[0::4], v[0::4])
 skew.ax.set_ylim(1000, 100)
 skew.ax.set_xlim(-40, 60)
 
@@ -186,7 +191,9 @@ skew = SkewT(fig, rotation=30)
 skew.plot(p, T, 'r')
 skew.plot(p, Td, 'g')
 #comment out barb color for black barbs
-skew.plot_barbs(p, u, v,)
+#skew.plot_barbs(p, u, v,)
+#Increase the number in these arrays to increase the declutter rate
+skew.plot_barbs(p[0::4], u[0::4], v[0::4])
 skew.ax.set_ylim(1000, 100)
 skew.ax.set_xlim(-40, 60)
 skew.ax.set_ylabel = ('Pressure')
