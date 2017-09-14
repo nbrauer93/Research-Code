@@ -2,7 +2,8 @@
 """
 Created on Fri Aug 25 22:14:26 2017
 
-@author: noahb
+@author: Unidata/MetPy
+#Changes and modifications made by Noah Brauer
 """
 
 # Copyright (c) 2008-2016 MetPy Developers.
