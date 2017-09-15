@@ -51,7 +51,7 @@ from os import open
 #dataset = get_upper_air_data(datetime(year, month, day, hour), DNR)
 
 
-dataset = get_upper_air_data(datetime(2017, 8, 27, 0), 'CRP')
+dataset = get_upper_air_data(datetime(2017, 8, 27, 12), 'CRP')
 
 
 ##########################################################################
