@@ -3,7 +3,7 @@
 """
 Created on Tue Nov 27 20:23:19 2018
 
-#Radar data import function is from Cameron Homeyer
+#Radar data import function is from Dr. Cameron Homeyer
 """
 
 import matplotlib.pyplot as plt
