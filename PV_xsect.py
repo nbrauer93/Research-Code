@@ -96,7 +96,27 @@ lon_hou = lon[350:354]
 #%%
 
 
-fig = plt.figure(figsize = [10,10])
+fig = plt.figure(figsize = [12,12])
+ax = plt.axes()
+plt.yscale('log')
+plt.ylim(level_mb[27],level_mb[0])
+clevs = np.arange(2,20,2)
+plt.contour(lon_hou,level_mb,pv_hou2,clevs,colors = 'black')
+cp = plt.contourf(lon_hou, level_mb,pv_hou2,clevs, cmap = 'RdPu')
+clevs2 = np.arange(250,370,20)
+plt.contour(lon_hou,level_mb,theta_hou2,colors = 'blue',linewidths = 0.75)
+cs = plt.contour(lon_hou,level_mb,theta_hou2, clevs2,colors = 'blue',linewidths = 0.75)
+
+
+plt.clabel(cs,inline = 1, fontsize = 10, fmt='%4.0f')
+cbar = plt.colorbar(cp,ticks = clevs, orientation = 'horizontal')
+cbar.set_label('PVU', size = 16)
+plt.xlabel('Longitude', size = 18)
+plt.ylabel('Pressure', size = 18)
+plt.title('Potential Vorticity and $\Theta$ at Latitude = 30$^o$N', size = 20)
+
+plt.show()
+
 
 
 
