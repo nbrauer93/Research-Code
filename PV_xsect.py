@@ -83,43 +83,45 @@ for i in range(theta_squished.shape[0]):
 theta = theta_squished.reshape(T,Z,I,J)        
 
 
-#Define a constant latitude and take cross section along this; varies by longitude (-97.5 -94.5 )
+#Define a constant latitude and take cross section along this; varies by longitude (-99.5 -93.5 )
 #constant latitude is 30degN
 
 theta_hou = theta[:,:,80,:]
 pv_hou = pv_aug[:,:,80,:]
 
-theta_hou2 = theta_hou[3,:,350:354]
-pv_hou2 = pv_hou[3,:,350:354]
+theta_hou2 = theta_hou[4,:,347:356]
+pv_hou2 = pv_hou[5,:,347:356]*10**6
 
-lon_hou = lon[350:354]
+lon_hou = lon[347:356]
 #%%
 
 
-fig = plt.figure(figsize = [12,12])
+sigma = 1.25
+theta_smooth = gaussian_filter(theta_hou2, sigma)
+
+
+
+fig = plt.figure(figsize = [10,10])
 ax = plt.axes()
 plt.yscale('log')
 plt.ylim(level_mb[27],level_mb[0])
-clevs = np.arange(2,20,2)
+clevs = np.arange(0,20,1)
 plt.contour(lon_hou,level_mb,pv_hou2,clevs,colors = 'black')
 cp = plt.contourf(lon_hou, level_mb,pv_hou2,clevs, cmap = 'RdPu')
-clevs2 = np.arange(250,370,20)
-plt.contour(lon_hou,level_mb,theta_hou2,colors = 'blue',linewidths = 0.75)
-cs = plt.contour(lon_hou,level_mb,theta_hou2, clevs2,colors = 'blue',linewidths = 0.75)
+clevs2 = np.arange(210,370,10)
+plt.contour(lon_hou,level_mb,theta_smooth,colors = 'blue',linewidths = 2)
+cs = plt.contour(lon_hou,level_mb,theta_smooth, clevs2,colors = 'blue',linewidths = 2)
 
 
 plt.clabel(cs,inline = 1, fontsize = 10, fmt='%4.0f')
-cbar = plt.colorbar(cp,ticks = clevs, orientation = 'horizontal')
+cbar = plt.colorbar(cp,ticks = clevs[::2], orientation = 'horizontal')
 cbar.set_label('PVU', size = 16)
 plt.xlabel('Longitude', size = 18)
-plt.ylabel('Pressure', size = 18)
+plt.ylabel('Pressure (mb)', size = 18)
 plt.title('Potential Vorticity and $\Theta$ at Latitude = 30$^o$N', size = 20)
 
+
 plt.show()
-
-
-
-
 
 
 
