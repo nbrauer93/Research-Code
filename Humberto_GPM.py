@@ -35,14 +35,12 @@ precip_rate = DPR['NS']['SLV']['precipRateNearSurface'][:]
 alt = DPR['NS']['PRE']['elevation'][:] #in meters
 
 
-#Choose our lat-lon of interest
+#set up lat-lon
 
 ind1 = np.where((lon2[:,0]>=-83))
 ind2 = np.where((lon2[:,0])<=-70)
 ind3 = np.intersect1d(ind1,ind2)
 
-
-#Make coordinates into 2 dimensions
 
 
 x2 = 2.*17 #48 degrees
@@ -86,7 +84,7 @@ lon0 = lons[0]
 #this projection is not exactly right, but works 
 p = Proj(proj='laea', zone=10, ellps='WGS84',lat_0=lat0,lon_0=lon0)
 
-#make it 2d for the pcolormesh 
+
 lat_3d = np.zeros(ku.shape)
 lon_3d = np.zeros(ku.shape)
 for i in np.arange(0,ku.shape[0]):
@@ -94,19 +92,19 @@ for i in np.arange(0,ku.shape[0]):
     lon_3d[i,:] = lons[i]
 #convert to distances 
 x,y = p(lon_3d,lat_3d)
-#get the radial distance
+
 R_gpm = np.sqrt(x**2  + y**2)*np.sign(x)
-#flip the order of the range gates
+
 ku = ku[:,::-1]
 
 
-#mask bad data
+#remove bad data
 ku = np.ma.masked_where(ku <= 12,ku)
 
 
 y = np.zeros([ku.shape[0],ku.shape[1]])
 
-#make sure this number matches the one above 
+
 h4 = h3[:,27]
     
 for i in np.arange(y.shape[1]):
